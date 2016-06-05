@@ -10,6 +10,7 @@ class Receipt
     @total_price_no_taxes = []
     @sum = 0
     @sum_total_price = 0
+    @round = 0
   end
 # Calculate item price taxes included
   def sales_taxes(item)
@@ -28,13 +29,13 @@ class Receipt
   def import_taxes(item)
     if ((item.name == 'Book' || item.name == 'Food' || item.name == 'Medical') && item.import_taxes == false)
       @total = item.price
-      puts "1 #{item.name} at #{@total}"
+      puts "1 #{item.name} at #{@total.to_f}"
     elsif ((item.name == 'Book' || item.name == 'Food' || item.name == 'Medical') && item.import_taxes == true)
       @total = item.price * 1.05
-      puts "1 imported #{item.name} at #{@total}"
+      puts "1 imported #{item.name} at #{@total.to_f}"
     else
       @total = item.price * 1.15
-      puts "1 imported #{item.name} at #{@total}"
+      puts "1 imported #{item.name} at #{@total.to_f}"
     end
     # Call method add
     add(item)
@@ -62,21 +63,18 @@ class Receipt
     end
   end
 
-
 # Print the total price of the items without taxes
   def cart
-    puts "Total excluding taxes: #{@sum.to_f}"
+    puts "Total excluded taxes: #{@sum.to_f}"
     puts "Total included taxes: #{@sum_total_price.to_f}"
-    puts "Sales_taxes:#{@sum_total_price.to_f - @sum}"
+    puts "Sales_taxes:#{@sum_total_price.round(1) - @sum}"
   end
-
-
 
 end
 
 # Create instances of Item class
-book = Item.new("Book", 10, false, false)
-food = Item.new("Food", 30, false, true)
+book = Item.new("Book", 10.2, false, false)
+food = Item.new("Food", 30.2, false, true)
 cd = Item.new("Cd", 20, true, true)
 
 # Create instance of Receipt class
