@@ -7,7 +7,6 @@ class Receipt
   def initialize
     @total = []
     @total_price = []
-    @total_taxes = []
     @total_price_no_taxes = []
     @sum = 0
     @sum_total_price = 0
@@ -37,9 +36,7 @@ class Receipt
       @total = item.price * 1.15
       puts "1 imported #{item.name} at #{@total}"
     end
-
-
-# Call method add
+    # Call method add
     add(item)
   end
 
@@ -54,7 +51,7 @@ class Receipt
   end
 
 
-# Sum of all products in the array
+# Sum of all items in the array
   def sum_price
     @total_price_no_taxes.each do |x|
       @sum += x
@@ -81,10 +78,10 @@ end
 book = Item.new("Book", 10, false, false)
 food = Item.new("Food", 30, false, true)
 cd = Item.new("Cd", 20, true, true)
+
 # Create instance of Receipt class
 receipt = Receipt.new
 
-# Test methods on my instances
 receipt.sales_taxes(book)
 receipt.import_taxes(book)
 
@@ -93,6 +90,6 @@ receipt.import_taxes(food)
 
 receipt.sales_taxes(cd)
 receipt.import_taxes(cd)
-receipt.sum_price
 
+receipt.sum_price
 receipt.cart
