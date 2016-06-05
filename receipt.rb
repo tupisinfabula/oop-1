@@ -79,13 +79,22 @@ end
 book = Item.new("Book", 12.49, false, false)
 cd = Item.new("music CD", 14.99, true, false)
 chocolate = Item.new("Chocolate Bar", 0.85, false, false)
-
 # Create instance of Receipt class
 receipt = Receipt.new
 
 receipt.sales_taxes(book)
 receipt.sales_taxes(cd)
 receipt.sales_taxes(chocolate)
+# Return the total
+receipt.sum_price
+receipt.cart
+
+box_chocolate = Item.new("Box of chocolate", 10.00, false, true)
+perfume = Item.new("Bottle of Perfume", 47.50, true, true)
+
+receipt.import_taxes(box_chocolate)
+receipt.import_taxes(perfume)
+
 # Return the total
 receipt.sum_price
 receipt.cart
