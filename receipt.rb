@@ -14,7 +14,7 @@ class Receipt
   end
 # Calculate item price taxes included
   def sales_taxes(item)
-    if (item.name == 'Book' || item.name == 'Food' || item.name == 'Medical')
+    if (item.sales_taxes == false)
       @total = item.price
       puts "1 #{item.name} at #{@total.to_f.round(2)}"
     else
